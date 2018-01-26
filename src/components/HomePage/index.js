@@ -2,20 +2,39 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Songs from '../Songs';
 import Favourites from '../Favourites';
+import TunesService from '../../services/TunesService';
 
 class Page extends Component {
   constructor() {
     super();
     this.state = {
       songs: [],
-      favourites: []
+      favourites: [],
+      query: ''
     };
+
+    this.tunesService = new TunesService();
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.tunesService.getData('despacito').then((data) => {
+      console.log(data);
+    });
+  }
+
+  handleInputChange(event) {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   render() {
     return (
       <div className="container">
-        <Header/>
+        <Header query={this.state.query} onInputChange={this.handleInputChange}/>
         Page!
         <Songs songs={this.state.songs}/>
         {/* When songs are being loaded the Loader component should be shown */}
