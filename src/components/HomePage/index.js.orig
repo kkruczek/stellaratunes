@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import Songs from '../Songs';
 import Favourites from '../Favourites';
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+import TunesService from '../../services/TunesService';
+=======
 import Loader from '../Loader';
 import TunesService from '../../services/TunesService';
 import StorageService from '../../services/StorageService';
+>>>>>>> prepare solution
 
 class Page extends Component {
   constructor() {
@@ -14,8 +18,32 @@ class Page extends Component {
 
     this.state = {
       songs: [],
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+      favourites: [],
+      query: ''
+    };
+
+    this.tunesService = new TunesService();
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.tunesService.getData('despacito').then((data) => {
+      console.log(data);
+    });
+  }
+
+  handleInputChange(evt) {
+    const { name, value } = evt.target;
+
+    console.log(value);
+
+    this.setState({
+      [name]: value
+    });
+=======
       favourites: this.storageService.loadFavourites(),
-      query: '',
+      query: 'fear',
       loading: true
     };
 
@@ -66,6 +94,7 @@ class Page extends Component {
     this.setState(previousState => ({
       favourites: previousState.favourites.filter(f => f !== song)
     }));
+>>>>>>> prepare solution
   }
 
   render() {
@@ -81,12 +110,18 @@ class Page extends Component {
     );
     return (
       <div className="container">
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+        <Header query={this.state.query} onInputChange={this.handleInputChange}/>
+        Page!
+        <Songs songs={this.state.songs}/>
+=======
         <Header
           query={this.state.query}
           onInputChange={this.handleInputChange}
           onButtonClick={this.handleButtonClick}
         />
         { content }
+>>>>>>> prepare solution
         {/* When songs are being loaded the Loader component should be shown */}
         <Favourites favourites={this.state.favourites} removeFavourite={this.removeFavourite} />
         {/* Favourites should be saved to localstorage */}

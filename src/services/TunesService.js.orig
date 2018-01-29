@@ -1,7 +1,11 @@
 /* global fetch */
 import { API_URL } from '../utils/constants';
 
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+class TunesService {
+=======
 class TuneService {
+>>>>>>> prepare solution
   getData(query) {
     return fetch(`${API_URL}?term=${query}`)
       .then(response => response.json())
@@ -12,4 +16,8 @@ class TuneService {
   }
 }
 
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+export default TunesService;
+=======
 export default TuneService;
+>>>>>>> prepare solution

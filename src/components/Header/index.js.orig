@@ -10,11 +10,26 @@ function Header(props) {
     <div className="header">
       <img className="logo" src={logo} alt="logo"/>
       <h1 className="title">Stellaratunes</h1>
+<<<<<<< 107d137d672ddd7f49aa6ad5351ac336d9f87541
+      <Input
+        type="text"
+        name="query"
+        value={props.query}
+        onInputChange={props.onInputChange}
+      />
+      <Button type="primary">Search</Button>
+=======
       <Input name="query" value={props.query} onInputChange={props.onInputChange} />
       <Button type="primary" onButtonClick={props.onButtonClick}>Search</Button>
+>>>>>>> prepare solution
     </div>
   );
 }
+
+Header.propTypes = {
+  query: PropTypes.string,
+  onInputChange: PropTypes.func
+};
 
 export default Header;
 

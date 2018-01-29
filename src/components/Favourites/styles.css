@@ -10,3 +10,18 @@
 .fav-title {
   margin-left: 15px;
 }
+
+.fav-element {
+  border-bottom: 1px darkgray solid;
+}
+
+.fav-element .fav-artist {
+  display: block;
+  background: lightgray;
+  text-overflow: ellipsis;
+}
+
+.fav-element .fav-track {
+  display: block;
+  text-overflow: ellipsis;
+}
