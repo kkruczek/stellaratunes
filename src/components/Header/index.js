@@ -16,14 +16,15 @@ function Header(props) {
         value={props.query}
         onInputChange={props.onInputChange}
       />
-      <Button type="primary">Search</Button>
+      <Button type="primary" onButtonClick={props.handleButtonClick}>Search</Button>
     </div>
   );
 }
 
 Header.propTypes = {
   query: PropTypes.string,
-  onInputChange: PropTypes.func
+  onInputChange: PropTypes.func,
+  handleButtonClick: PropTypes.func
 };
 
 export default Header;
