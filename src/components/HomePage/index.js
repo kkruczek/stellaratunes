@@ -24,14 +24,15 @@ class Page extends Component {
     this.handleRemoveSongFromFavourites = this.handleRemoveSongFromFavourites.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({ favourites: this.favouritesService.getFavouritesSongs() });
-  }
-
   componentDidMount() {
     this.tunesService.getData('despacito').then((data) => {
       console.log(data);
     });
+    this.loadFavourites();
+  }
+
+  loadFavourites() {
+    this.setState({ favourites: this.favouritesService.getFavouritesSongs() });
   }
 
   handleInputChange(evt) {
