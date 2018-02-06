@@ -8,7 +8,7 @@ function Song({ song, addSongToFavourites }) {
     <div className="song">
       <span className="artist">{song.artistName}</span>
       <span className="track">{song.trackName}</span>
-      <Button onButtonClick={function () { addSongToFavourites(song); }}>Favourite</Button>
+      <Button onButtonClick={() => { addSongToFavourites(song); }}>Favourite</Button>
     </div>
   );
 }
