@@ -1,7 +1,6 @@
 /* global fetch */
 import { API_URL } from '../utils/constants';
 
-
 class TunesService {
   getData(query) {
     return fetch(`${API_URL}?term=${query}`)

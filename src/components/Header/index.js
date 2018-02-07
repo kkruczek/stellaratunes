@@ -5,16 +5,18 @@ import logo from './logo.svg';
 import Button from '../Button/index';
 import Input from '../Input/index';
 
-function Header({ query, onInputChange }) {
+function Header(props) {
   return (
     <div className="header">
       <img className="logo" src={logo} alt="logo"/>
       <h1 className="title">Stellaratunes</h1>
       <Input
         type="text"
-        value={query}
+        name="query"
+        value={props.query}
+        onInputChange={props.onInputChange}
       />
-      <Button type="primary" onButtonClick={onInputChange}>Search</Button>
+      <Button type="primary">Search</Button>
     </div>
   );
 }

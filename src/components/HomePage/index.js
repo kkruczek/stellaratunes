@@ -23,8 +23,10 @@ class Page extends Component {
     });
   }
 
-  handleInputChange(event) {
-    const { name, value } = event.target;
+  handleInputChange(evt) {
+    const { name, value } = evt.target;
+
+    console.log(value);
 
     this.setState({
       [name]: value
