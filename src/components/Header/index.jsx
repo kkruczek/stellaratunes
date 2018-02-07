@@ -5,7 +5,9 @@ import logo from './logo.svg';
 import Button from '../Button/index';
 import Input from '../Input/index';
 
-function Header(props) {
+function Header({
+  query, onInputChange, onButtonClicked, loading
+}) {
   return (
     <div className="header">
       <img className="logo" src={logo} alt="logo"/>
@@ -13,17 +15,19 @@ function Header(props) {
       <Input
         type="text"
         name="query"
-        value={props.query}
-        onInputChange={props.onInputChange}
+        value={query}
+        onInputChange={onInputChange}
       />
-      <Button type="primary">Search</Button>
+      <Button type="primary" loading={loading} onButtonClick={onButtonClicked}>Search</Button>
     </div>
   );
 }
 
 Header.propTypes = {
   query: PropTypes.string,
-  onInputChange: PropTypes.func
+  onInputChange: PropTypes.func,
+  onButtonClicked: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 export default Header;

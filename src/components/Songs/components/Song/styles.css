@@ -1,0 +1,16 @@
+.song {
+  display: flex;
+  width: 100%
+}
+
+.song .artist {
+  padding: 9px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.song .track {
+  padding: 9px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
