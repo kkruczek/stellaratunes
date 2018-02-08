@@ -4,10 +4,12 @@ import './styles.css';
 import Text from '../Text';
 import Button from '../Button';
 
-function Favourites({ favourites = [], clearFavourites }) {
-  const list = favourites.map(song => (
-    <li className="fav-item" key={song.trackId}>{song.trackName}</li>
-  ));
+function Favourites({ favourites, clearFavourites }) {
+  const list = favourites ?
+    favourites.map(song => (
+      <li className="fav-item" key={song.trackId}>{song.trackName}</li>
+    ))
+    : [];
 
   return (
     <div className="favourites">
@@ -26,7 +28,7 @@ Favourites.propTypes = {
   favourites: PropTypes.arrayOf(PropTypes.shape({
     trackId: PropTypes.number.isRequired,
     trackName: PropTypes.string.isRequired
-  })).isRequired,
+  })),
   clearFavourites: PropTypes.func
 };
 
