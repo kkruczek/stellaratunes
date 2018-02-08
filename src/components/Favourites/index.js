@@ -6,7 +6,11 @@ import Song from './../Songs/Song/index';
 
 function Favourites(props) {
   const favourites = props.favourites.map(song => (
-    <Song key={song.trackId} song={song} removeSongFromFavourites={props.removeSongFromFavourites}/>
+    <Song
+      key={song.trackId}
+      song={song}
+      removeSongFromFavourites={props.removeSongFromFavourites}
+    />
   ));
 
   return (

@@ -3,7 +3,7 @@ import Header from '../Header';
 import Songs from '../Songs';
 import Favourites from '../Favourites';
 import TunesService from '../../services/TunesService';
-import FavouritesSongsService from './../../services/FavouritesSongsService';
+import LocalStorageService from './../../services/LocalStorageService';
 import Loader from './../Loader/index';
 
 class Page extends Component {
@@ -17,7 +17,7 @@ class Page extends Component {
     };
 
     this.tunesService = new TunesService();
-    this.favouritesService = new FavouritesSongsService();
+    this.localStorageService = new LocalStorageService();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleAddSongToFavourites = this.handleAddSongToFavourites.bind(this);
@@ -32,7 +32,7 @@ class Page extends Component {
   }
 
   loadFavourites() {
-    this.setState({ favourites: this.favouritesService.getFavouritesSongs() });
+    this.setState({ favourites: this.localStorageService.getFavouritesSongs() });
   }
 
   handleInputChange(evt) {
@@ -59,14 +59,14 @@ class Page extends Component {
     if (!this.state.favourites.find(el => el.trackId === song.trackId)) {
       const updatedFavourites = [...this.state.favourites, song];
       this.setState({ favourites: updatedFavourites });
-      this.favouritesService.saveFavouritesSongs(updatedFavourites);
+      this.localStorageService.saveFavouritesSongs(updatedFavourites);
     }
   }
 
   handleRemoveSongFromFavourites(song) {
     const updatedFavourites = this.state.favourites.filter(el => el.trackId !== song.trackId);
     this.setState({ favourites: updatedFavourites });
-    this.favouritesService.saveFavouritesSongs(updatedFavourites);
+    this.localStorageService.saveFavouritesSongs(updatedFavourites);
   }
 
   render() {
