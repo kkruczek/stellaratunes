@@ -9,4 +9,15 @@
 
 .fav-title {
   margin-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.fav-title h2 {
+  padding: 0 20px;
+}
+
+.fav-item {
+  display: flex;
+  padding: 3px 9px;
 }
