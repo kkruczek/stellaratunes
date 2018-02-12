@@ -4,6 +4,7 @@ import Header from '../Header';
 import Songs from '../Songs';
 import Favourites from '../Favourites';
 import TunesService from '../../services/TunesService';
+import FavSongsService from '../../services/FavSongsService';
 
 class Page extends Component {
   constructor() {
@@ -11,17 +12,23 @@ class Page extends Component {
     this.state = {
       songs: [],
       favourites: [],
-      query: ''
+      query: '',
+      isLoading: false
     };
 
     this.tunesService = new TunesService();
+    this.favSongsService = new FavSongsService();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.addToFavourites = this.addToFavourites.bind(this);
   }
 
   componentDidMount() {
-    console.log('pobierz z localstorage');    
+    this.tunesService.getData('despacito').then((data) => {
+      console.log(data);
+    });
+
+    this.fetchFavSongs();
   }
 
   getSongs(query) {
@@ -37,7 +44,8 @@ class Page extends Component {
         });
         this.setState({
           songs: newState,
-          query: ''
+          query: '',
+          isLoading: false
         });
       })
       .catch((error) => {
@@ -45,9 +53,20 @@ class Page extends Component {
         console.log(error);
         this.setState({
           songs: previousState,
-          query: ''
+          query: '',
+          isLoading: false
         });
       });
+  }
+
+  fetchFavSongs() {
+    const cachedFavSongs = this.favSongsService.fetchFavSongs();
+
+    if (cachedFavSongs) {
+      this.setState({
+        favourites: cachedFavSongs
+      });
+    }
   }
 
   handleInputChange(evt) {
@@ -58,19 +77,24 @@ class Page extends Component {
   }
 
   handleButtonClick() {
+    this.setState({
+      isLoading: true
+    });
+
     if (this.state.query !== '') {
       this.getSongs(this.state.query);
     }
   }
 
   addToFavourites(favItem) {
-    console.log('idzie!');
+    console.log(favItem);
     const newState = update(this.state.favourites, {
       $push: [favItem]
     });
     this.setState({
       favourites: newState
     });
+    this.favSongsService.addFavSong(newState);
   }
 
   render() {
@@ -81,11 +105,12 @@ class Page extends Component {
           onInputChange={this.handleInputChange}
           onButtonClick={this.handleButtonClick}
         />
-        <Songs songs={this.state.songs} addToFavourites={this.addToFavourites} />
-        {/* When songs are being loaded the Loader component should be shown */}
+        <Songs
+          isLoading={this.state.isLoading}
+          songs={this.state.songs}
+          addToFavourites={this.addToFavourites}
+        />
         <Favourites favourites={this.state.favourites}/>
-        {/* Favourites should be saved to localstorage */}
-        {/* On page refresh they should be added to state */}
       </div>
     );
   }
