@@ -92,7 +92,7 @@ class Page extends Component {
     this.setState({
       favourites: newState
     });
-    this.favSongsService.addFavSong(newState);
+    this.favSongsService.setFavSongs(newState);
   }
 
   render() {

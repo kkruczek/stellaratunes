@@ -8,7 +8,7 @@ class FavSongsService {
     }
   }
 
-  addFavSong(favSongs) {
+  setFavSongs(favSongs) {
     localStorage.setItem('favSongs', JSON.stringify(favSongs));
   }
 }
