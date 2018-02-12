@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 import Header from '../Header';
 import Songs from '../Songs';
 import Favourites from '../Favourites';
@@ -16,21 +17,36 @@ class Page extends Component {
     this.tunesService = new TunesService();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.addToFavourites = this.addToFavourites.bind(this);
   }
 
   componentDidMount() {
-    /* tutaj dodaj local storage */
-    console.log('pobierz z local stoarge');
+    console.log('pobierz z localstorage');    
   }
 
   getSongs(query) {
+    const previousState = this.state.songs;
+
     this.tunesService.getData(query)
       .then((data) => {
         console.log(data);
-        console.log(data[0].trackName);
+        const song = data[0].trackName;
+        console.log(song);
+        const newState = update(this.state.songs, {
+          $push: [song]
+        });
+        this.setState({
+          songs: newState,
+          query: ''
+        });
       })
       .catch((error) => {
+        console.log('Nie znaleziono piosenki');
         console.log(error);
+        this.setState({
+          songs: previousState,
+          query: ''
+        });
       });
   }
 
@@ -47,6 +63,16 @@ class Page extends Component {
     }
   }
 
+  addToFavourites(favItem) {
+    console.log('idzie!');
+    const newState = update(this.state.favourites, {
+      $push: [favItem]
+    });
+    this.setState({
+      favourites: newState
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -55,8 +81,7 @@ class Page extends Component {
           onInputChange={this.handleInputChange}
           onButtonClick={this.handleButtonClick}
         />
-        Page!
-        <Songs songs={this.state.songs}/>
+        <Songs songs={this.state.songs} addToFavourites={this.addToFavourites} />
         {/* When songs are being loaded the Loader component should be shown */}
         <Favourites favourites={this.state.favourites}/>
         {/* Favourites should be saved to localstorage */}
