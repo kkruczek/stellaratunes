@@ -20,7 +20,7 @@ class Page extends Component {
     this.favSongsService = new FavSongsService();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.addToFavourites = this.addToFavourites.bind(this);
+    this.addSongToFavorites = this.addSongToFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -84,7 +84,7 @@ class Page extends Component {
     }
   }
 
-  addToFavourites(favItem) {
+  addSongToFavorites(favItem) {
     console.log(favItem);
     const newState = update(this.state.favourites, {
       $push: [favItem]
@@ -106,7 +106,7 @@ class Page extends Component {
         <Songs
           isLoading={this.state.isLoading}
           songs={this.state.songs}
-          addToFavourites={this.addToFavourites}
+          addToFavourites={this.addSongToFavorites}
         />
         <Favourites favourites={this.state.favourites}/>
       </div>
