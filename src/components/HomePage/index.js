@@ -52,7 +52,7 @@ class Page extends Component {
 
   handleAddSongToFavourites(song) {
     if (this.state.favourites.find(s => s.trackId === song.trackId) === undefined) {
-      const newFavourites = this.state.favourites.concat(song);
+      const newFavourites = [...this.state.favourites, song];
       this.favouritesService.save(newFavourites);
       this.setState({ favourites: newFavourites });
     }
