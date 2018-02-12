@@ -1,12 +1,10 @@
-/* eslint-disable */
+/* global localStorage */
 
 class FavSongsService {
   fetchFavSongs() {
     const favSongs = JSON.parse(localStorage.getItem('favSongs'));
     if (favSongs) {
       return favSongs;
-    } else {
-      return null;
     }
   }
 

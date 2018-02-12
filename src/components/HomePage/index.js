@@ -61,7 +61,7 @@ class Page extends Component {
 
   fetchFavSongs() {
     const cachedFavSongs = this.favSongsService.fetchFavSongs();
-
+    
     if (cachedFavSongs) {
       this.setState({
         favourites: cachedFavSongs
