@@ -36,9 +36,7 @@ class Page extends Component {
 
     this.tunesService.getData(query)
       .then((data) => {
-        console.log(data);
         const song = data[0].trackName;
-        console.log(song);
         const newState = update(this.state.songs, {
           $push: [song]
         });
@@ -61,7 +59,7 @@ class Page extends Component {
 
   fetchFavSongs() {
     const cachedFavSongs = this.favSongsService.fetchFavSongs();
-    
+
     if (cachedFavSongs) {
       this.setState({
         favourites: cachedFavSongs
