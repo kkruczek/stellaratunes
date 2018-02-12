@@ -15,28 +15,46 @@ class Page extends Component {
 
     this.tunesService = new TunesService();
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentDidMount() {
-    this.tunesService.getData('despacito').then((data) => {
-      console.log(data);
-    });
+    /* tutaj dodaj local storage */
+    console.log('pobierz z local stoarge');
+  }
+
+  getSongs(query) {
+    this.tunesService.getData(query)
+      .then((data) => {
+        console.log(data);
+        console.log(data[0].trackName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleInputChange(evt) {
     const { name, value } = evt.target;
-
-    console.log(value);
-
     this.setState({
       [name]: value
     });
   }
 
+  handleButtonClick() {
+    if (this.state.query !== '') {
+      this.getSongs(this.state.query);
+    }
+  }
+
   render() {
     return (
       <div className="container">
-        <Header query={this.state.query} onInputChange={this.handleInputChange}/>
+        <Header
+          query={this.state.query}
+          onInputChange={this.handleInputChange}
+          onButtonClick={this.handleButtonClick}
+        />
         Page!
         <Songs songs={this.state.songs}/>
         {/* When songs are being loaded the Loader component should be shown */}
