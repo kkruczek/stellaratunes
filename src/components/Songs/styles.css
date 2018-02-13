@@ -1,0 +1,12 @@
+.songRow {
+    padding: 10px; 
+}
+
+.songRow button {
+    margin-left: 10px;
+    background: #00f;
+    color: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    border: none;
+}
