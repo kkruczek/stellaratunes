@@ -75,17 +75,15 @@ class Page extends Component {
   }
 
   handleButtonClick() {
-    this.setState({
-      isLoading: true
-    });
-
     if (this.state.query !== '') {
+      this.setState({
+        isLoading: true
+      });
       this.getSongs(this.state.query);
     }
   }
 
   addSongToFavorites(favItem) {
-    console.log(favItem);
     const newState = update(this.state.favourites, {
       $push: [favItem]
     });

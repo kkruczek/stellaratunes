@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
 
 function Song(props) {
   const handleClick = () => {
@@ -7,7 +8,7 @@ function Song(props) {
   };
 
   return (
-    <div>
+    <div className="songRow">
       { props.song }
       <button onClick={handleClick}> Favourites! </button>
     </div>
