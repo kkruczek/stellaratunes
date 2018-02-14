@@ -1,0 +1,21 @@
+.song {
+  display: flex;
+  min-height: 30px;
+  max-height: 30px;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0;
+}
+
+.song__artwork {
+  padding: 0 5px;
+}
+
+.song__name {
+  flex: auto;
+  padding: 0 1rem;
+}
+
+.song__actions {
+  padding: 0 1rem;
+}

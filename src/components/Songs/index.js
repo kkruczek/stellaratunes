@@ -1,16 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Song from './components/Song';
+import SongShape from '../Shapes/song';
 
-function Songs() {
+function Songs({ songs, addSongToFavourites }) {
   return (
-    <div className="container">
-      List!
-      {/* map */}
-      {/* Homework: Change div to Song component(create one) */}
-      {/* In song component add a Button. */}
-      {/* On Button click the song should be added to favourites */}
-      {/* state of Page component, and shown in Favourites. */}
+    <div>
+      {songs.map(song => (
+        <Song song={song} key={song.trackId} addSongToFavourites={addSongToFavourites} />))}
     </div>
   );
 }
+
+Songs.propTypes = {
+  songs: PropTypes.arrayOf(PropTypes.shape(SongShape)).isRequired,
+  addSongToFavourites: PropTypes.func
+};
 
 export default Songs;

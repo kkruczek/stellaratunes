@@ -25,3 +25,7 @@
   border: 1px solid #cccccc;
   color: #ff7626;
 }
+
+.btn:focus {
+  box-shadow: 0 0 2px 0 #ff7626;
+}
