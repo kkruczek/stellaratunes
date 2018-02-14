@@ -25,7 +25,9 @@ class Page extends Component {
   componentDidMount() {
     this.tunesService.getData('despacito').then((data) => {
       this.getSongs(data);
-      this.toggleLoader();
+      this.setState({
+        loader: false
+      });
     });
   }
 
@@ -35,17 +37,15 @@ class Page extends Component {
     });
   }
 
-  toggleLoader() {
-    this.setState({
-      loader: !this.state.loader
-    });
-  }
-
   handleButtonClick() {
-    this.toggleLoader();
+    this.setState({
+      loader: true
+    });
     this.tunesService.getData(this.state.query).then((data) => {
       this.getSongs(data);
-      this.toggleLoader();
+      this.setState({
+        loader: false
+      });
     });
   }
 

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Song from '../Song';
 import Button from '../Button/index';
 
-function Songs(props) {
+function Songs({ songs, addToFavourite }) {
   return (
     <div className="container">
       {
-        props.songs.map((song, index) =>
+        songs.map((song, index) =>
           (
             <Song
               key={song.collectionId + song.trackId}
@@ -16,23 +16,19 @@ function Songs(props) {
               trackViewUrl={song.trackViewUrl}
             >
               <br />
-              <Button type="secondary" onButtonClick={() => props.addToFavourite(index)}>
+              <Button type="secondary" onButtonClick={() => addToFavourite(index)}>
                 Add to favourite
               </Button>
             </Song>
           ))
       }
-      {/* map */}
-      {/* Homework: Change div to Song component(create one) */}
-      {/* In song component add a Button. */}
-      {/* On Button click the song should be added to favourites */}
-      {/* state of Page component, and shown in Favourites. */}
     </div>
   );
 }
 
 Songs.propTypes = {
-  songs: PropTypes.arrayOf(PropTypes.object)
+  songs: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  addToFavourite: PropTypes.func
 };
 
 export default Songs;

@@ -5,7 +5,7 @@ import Text from '../Text/index';
 import Song from '../Song';
 import Button from '../Button/index';
 
-function Favourites(props) {
+function Favourites({ favourites, onClick }) {
   return (
     <div className="favourites">
       <div className="fav-title">
@@ -13,7 +13,7 @@ function Favourites(props) {
       </div>
       <div className="elements">
         {
-        props.favourites.map((song, index) =>
+        favourites.map((song, index) =>
           (
             <Song
               key={song.collectionId + song.trackId}
@@ -21,7 +21,7 @@ function Favourites(props) {
               trackName={song.trackName}
               trackViewUrl={song.trackViewUrl}
             >
-              <Button type="danger" onButtonClick={() => props.onClick(index)}>
+              <Button type="danger" onButtonClick={() => onClick(index)}>
                 X
               </Button>
             </Song>
@@ -33,7 +33,8 @@ function Favourites(props) {
 }
 
 Favourites.propTypes = {
-  favourites: PropTypes.arrayOf(PropTypes.object)
+  favourites: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  onClick: PropTypes.func
 };
 
 export default Favourites;

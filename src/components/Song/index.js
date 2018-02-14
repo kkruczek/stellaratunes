@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Song(props) {
+function Song({
+  artistName,
+  trackName,
+  trackViewUrl,
+  children
+}) {
   return (
     <div>
       <p>
-        {props.artistName} - <a href={props.trackViewUrl}>{props.trackName}</a>
-        {props.children}
+        {artistName} - <a href={trackViewUrl}>{trackName}</a>
+        {children}
       </p>
     </div>
   );
